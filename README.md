@@ -14,14 +14,14 @@
 
 # 개발 과정 
 
-## Data Augmentation
+**1. Data Augmentation** 
 - 한글 난독화 패턴을 반영하여 데이터 증강
 - Train 데이터 1만 개 → 5만 개 확장
 - **데이터 5만 개 (1 epoch) 학습 시 좋은 성능** 기록
 <br>
 
-## Supervised Fine-Tuning (SFT)
-- **Instruction Tuning**: 모델이 명령을 잘 따르도록 학습
+**2.Supervised Fine-Tuning (SFT)**
+- **Instruction Tuning**: 모델이 명령을 잘 따르도록 학습 진행행
 - **LoRA 적용**: 메모리 절약 및 효율적 Fine-Tuning
 
 ```python
@@ -35,7 +35,7 @@ lora_config = LoraConfig(
 ```
 <br>
 
-## Inference
+**3. Inference**
 - **vLLM 활용**하여 Transformer 대비 속도 향상
 - **Sampling 기법**을을 활용하여 추론
 
@@ -49,7 +49,6 @@ sampling_params = SamplingParams(
     stop_token_ids=[eos_token_id]
 )
 ```
-<br>
 
 ---
 
