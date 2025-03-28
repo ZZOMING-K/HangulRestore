@@ -8,7 +8,7 @@ from transformers import T5TokenizerFast, T5ForConditionalGeneration, pipeline
 
 class KoreanLLMInference:
     
-    def __init__(self, config_path='../config/inference.yaml'):
+    def __init__(self, config_path='./config/inference.yaml'):
         
         with open(config_path, 'r') as file:
             self.config = yaml.safe_load(file)
