@@ -1,0 +1,16 @@
+# Model Configuration
+model:
+  base_model: "zzoming/hangul-restore-gemma"  
+  t5_model : "zzoming/restore-t5"
+
+# Data Configuration
+data:
+  path: "../data/aug_inference.csv"  
+
+# Inference Parameters
+inference:
+  temperature: 0.2  
+  top_p: 0.8       
+  top_k: 30        
+  seed: 42
+  max_tokens : 2048 
