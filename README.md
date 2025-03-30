@@ -7,6 +7,8 @@
 
 ![Image](https://github.com/user-attachments/assets/5b54bbd9-a025-46ab-a4d1-4d0a3a3fa6e8)
 
+<br>
+
 # 진행기간 및 성과
 
 - 2025.01 ~ 2025.02 ( 약 1달간 진행 )
@@ -21,36 +23,6 @@
 - Train 데이터 1만 개 → 5만 개 확장
 - **데이터 5만 개 (1 epoch) 학습 시 좋은 성능** 기록
 <br>
-
-**2.Supervised Fine-Tuning (SFT)**
-- **Instruction Tuning**: 모델이 명령을 잘 따르도록 학습 진행행
-- **LoRA 적용**: 메모리 절약 및 효율적 Fine-Tuning
-
-```python
-lora_config = LoraConfig(
-    r=16,
-    lora_alpha=32,
-    lora_dropout=0.05,
-    target_modules=["q_proj", "o_proj", "k_proj", "v_proj", "gate_proj", "up_proj", "down_proj"],
-    task_type="CAUSAL_LM",
-)
-```
-<br>
-
-**3. Inference**
-- **vLLM 활용**하여 Transformer 대비 속도 향상
-- **Sampling 기법**을을 활용하여 추론
-
-```python
-sampling_params = SamplingParams(
-    temperature=0.2, 
-    top_p=0.9, 
-    top_k=20, 
-    seed=42, 
-    max_tokens=2048, 
-    stop_token_ids=[eos_token_id]
-)
-```
 
 ---
 
