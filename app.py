@@ -31,7 +31,7 @@ def restore_review(obfuscated_review):
     processed_df = inference_model.generate_dict(df)
     restore_reviews = inference_model.inference(processed_df)
     
-    return restore_reviews
+    return restore_reviews[0]
 
 # Gradio UI
 with gr.Blocks() as demo:
