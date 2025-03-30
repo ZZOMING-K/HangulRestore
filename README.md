@@ -5,6 +5,8 @@
 - 🫠 [난독화된 한글 리뷰 복원 모델 개발 회고](https://until.blog/@zzoming/-dacon--%EB%82%9C%EB%8F%85%ED%99%94%EB%90%9C-%ED%95%9C%EA%B8%80-%EB%A6%AC%EB%B7%B0-%EB%B3%B5%EC%9B%90-ai-%EB%AA%A8%EB%8D%B8-%EA%B0%9C%EB%B0%9C%EA%B8%B0)
 <br>
 
+![Image](https://github.com/user-attachments/assets/5b54bbd9-a025-46ab-a4d1-4d0a3a3fa6e8)
+
 # 진행기간 및 성과
 
 - 2025.01 ~ 2025.02 ( 약 1달간 진행 )
