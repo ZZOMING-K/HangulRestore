@@ -317,11 +317,11 @@ def main() :
     
     settings = {
         "transform_hangul": 0.6,
-        "add_random_jongseong": 0.5,
+        "add_random_jongseong": 0.6,
         "apply_liaison": 0.5,
         "cho_to_jong": 0.4}  
     
-    train , aug_train_df  = aug_data(input_file, 1 , settings) # 데이터 증강 
+    train , aug_train_df  = aug_data(input_file, 2 , settings) # 데이터 증강 
     train_aug = concat_data(train , aug_train_df) # 원본 데이터 + 증강 데이터 결합 
     train_aug.to_csv(output_file , index = False) # 증강 데이터 저장 
     
