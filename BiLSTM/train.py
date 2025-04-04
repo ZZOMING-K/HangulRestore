@@ -4,7 +4,6 @@ from utils import TextProcessor, CharTokenizer, CharDataset, char_collate_fn
 from model import BiLSTMModel
 from utils import set_seed, calculate_accuracy, evaluate
 from torch.utils.data import DataLoader
-
 import os
 import torch
 
@@ -151,7 +150,6 @@ def main():
         bidirectional=True
     
     ).to(device)
-    
     
     trainer = Trainer(
         model=model,
