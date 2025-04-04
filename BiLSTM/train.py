@@ -11,7 +11,7 @@ import torch
 class Config:
     
     # Data settings
-    DATA_PATH = './data/aug_train.csv'
+    DATA_PATH = '../data/aug_train.csv'
     TEST_SIZE = 0.2
     RANDOM_SEED = 42
     
@@ -37,19 +37,20 @@ class Config:
   
 class Trainer : 
     
-    def __init__(self, model , train_loader , test_loader , config) :
+    def __init__(self, model , train_loader , test_loader , config , output_size=1614) :
         
         self.model = model
         self.train_loader = train_loader
         self.test_loader = test_loader
         self.config = config
         
+        self.output_size = output_size
+        
         self.criterion = torch.nn.CrossEntropyLoss(ignore_index=0)
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=config['learning_rate'])
+        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=config.LEARNING_RATE)
     
         self.num_epochs = config.NUM_EPOCHS
         self.device = config.DEVICE
-        self.output_size = config.OUTPUT_SIZE
         self.checkpoint_path = config.CHECKPOINT_PATH
         
         self.best_val_loss = float('inf')
@@ -73,7 +74,7 @@ class Trainer :
                 self.optimizer.step()
 
                 train_loss += loss.item()
-                train_correct += calculate_accuracy(logits.view(-1, 1614), output_ids.view(-1)) * output_ids.size(0)
+                train_correct += calculate_accuracy(logits.view(-1, self.output_size), output_ids.view(-1)) * output_ids.size(0)
                 train_total += output_ids.size(0)
 
                 # 100 배치마다 진행 상황 출력
@@ -100,10 +101,12 @@ class Trainer :
 
 def main():
     
+    config = Config()
+    
     set_seed(42)
     
     print("Loading and preprocessing data...")
-    df = TextProcessor.preprocess_dataframe('./data/aug_train.csv')
+    df = TextProcessor.preprocess_dataframe(config.DATA_PATH)
     train_data, test_data = TextProcessor.split_df(df, test_size=0.2, random_state=42)
     
     print("Creating tokenizers...")
@@ -149,19 +152,13 @@ def main():
     
     ).to(device)
     
-    config = {
-        'learning_rate': 1e-4,
-        'num_epochs': 20,
-        'output_size': len(output_tokenizer.char2idx),
-        'device': device,
-        'checkpoint_path': 'best_model_checkpoint.pth'
-    }
     
     trainer = Trainer(
         model=model,
         train_loader=train_loader,
         test_loader=test_loader,
-        config=config
+        config=config,
+        output_size=len(output_tokenizer.char2idx)
     )
        
     print("Starting training...")
