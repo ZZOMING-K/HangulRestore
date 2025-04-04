@@ -55,9 +55,6 @@ def create_T5_dataset(data_path, tokenizer, test_size=0.005, random_state=42):
     # restore 과 정답(output)이 일치할 경우에는 제거 
     train = train[train['restore_review'] != train['output']].reset_index(drop = True)
 
-    # instruct 추가 
-    train['restore_review'] = "어색한 표현 및 맞춤법을 교정해주세요: " + train['restore_review']
-    
     train_data, valid_data = train_test_split(train, 
                                               test_size=test_size, 
                                               random_state=random_state )

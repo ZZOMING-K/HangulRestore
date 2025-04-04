@@ -285,7 +285,7 @@ def aug_data(input_file, num_sample , settings) :
     augmented_data_list , origin_data_list = [] , []      
 
     for entry in train_output:
-        for _ in range(num_sample):  # 2번 샘플링
+        for _ in range(num_sample):  # 샘플링 횟수
             origin_data_list.append(entry)  
             augmented_entry = obfuscate_korean(entry, settings)  
             augmented_data_list.append(augmented_entry)  
@@ -311,15 +311,15 @@ def concat_data(train , aug_train_df) :
 
 def main() : 
     
-    input_file = './data/train.csv'
-    output_file = './data/aug_train.csv'
+    input_file = '../data/train.csv'
+    output_file = '../data/aug_train.csv'
     #output_file = './data/aug_inference.csv'
     
     settings = {
-        "transform_hangul": 0.7,
-        "add_random_jongseong": 0.7,
+        "transform_hangul": 0.6,
+        "add_random_jongseong": 0.5,
         "apply_liaison": 0.5,
-        "cho_to_jong": 0.6}  
+        "cho_to_jong": 0.4}  
     
     train , aug_train_df  = aug_data(input_file, 1 , settings) # 데이터 증강 
     train_aug = concat_data(train , aug_train_df) # 원본 데이터 + 증강 데이터 결합 
